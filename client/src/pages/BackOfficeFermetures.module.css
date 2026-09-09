@@ -1,0 +1,59 @@
+.formulaire {
+  max-width: 26rem;
+  margin: 0 auto var(--espace-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-md);
+}
+
+.champsDates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espace-sm);
+}
+
+.impact {
+  border: 1px solid var(--erreur);
+  border-radius: var(--rayon);
+  padding: var(--espace-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-xs);
+}
+
+.impact .motif {
+  margin: 0;
+}
+
+.liste {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.ligne {
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-sm) var(--espace-md);
+  margin-bottom: var(--espace-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espace-sm);
+  flex-wrap: wrap;
+}
+
+.periode {
+  font-weight: 500;
+}
+
+.motif {
+  color: var(--texte-secondaire);
+  font-size: 0.9rem;
+}
+
+.confirmationSuppression {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-xs);
+  flex-wrap: wrap;
+}

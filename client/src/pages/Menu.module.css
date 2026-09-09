@@ -1,0 +1,37 @@
+.page {
+  padding-left: var(--espace-md);
+  padding-right: var(--espace-md);
+}
+
+.categorie {
+  margin-bottom: var(--espace-lg);
+}
+
+.categorieTitre {
+  border-bottom: 1px solid var(--bordure-accent);
+  padding-bottom: var(--espace-xs);
+  margin-bottom: var(--espace-md);
+}
+
+.plat {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espace-md);
+  padding: var(--espace-xs) 0;
+  border-bottom: 1px dashed var(--bordure);
+}
+
+.platNom {
+  font-weight: 500;
+}
+
+.platDescription {
+  color: var(--texte-secondaire);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.platPrix {
+  white-space: nowrap;
+  font-family: var(--police-titre);
+}

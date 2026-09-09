@@ -1,0 +1,73 @@
+.page {
+  padding-left: var(--espace-md);
+  padding-right: var(--espace-md);
+}
+
+.groupe {
+  margin-bottom: var(--espace-lg);
+}
+
+.groupeTitre {
+  border-bottom: 1px solid var(--bordure-accent);
+  padding-bottom: var(--espace-xs);
+}
+
+.carte {
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-md);
+  margin-bottom: var(--espace-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-xs);
+}
+
+.ligneHaut {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--espace-sm);
+  flex-wrap: wrap;
+}
+
+.dateHeure {
+  font-family: var(--police-titre);
+  font-size: 1.1rem;
+}
+
+.statut {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--bordure);
+  white-space: nowrap;
+}
+
+.statutConfirmee {
+  border-color: var(--succes);
+  color: var(--succes);
+}
+
+.statutAnnulee {
+  border-color: var(--erreur);
+  color: var(--erreur);
+}
+
+.details {
+  color: var(--texte-secondaire);
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: var(--espace-sm);
+  margin-top: var(--espace-xs);
+  flex-wrap: wrap;
+}
+
+.confirmationAnnulation {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-sm);
+  flex-wrap: wrap;
+}

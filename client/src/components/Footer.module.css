@@ -1,0 +1,23 @@
+.footer {
+  border-top: 1px solid var(--bordure);
+  background: var(--fond-secondaire);
+  margin-top: var(--espace-xl);
+}
+
+.interieur {
+  padding-top: var(--espace-lg);
+  padding-bottom: var(--espace-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-xs);
+  text-align: center;
+  color: var(--texte-secondaire);
+  font-size: 0.9rem;
+}
+
+.titre {
+  font-family: var(--police-titre);
+  color: var(--texte);
+  font-size: 1.1rem;
+  margin-bottom: var(--espace-xs);
+}

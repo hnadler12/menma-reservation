@@ -1,0 +1,10 @@
+.page {
+  padding-left: var(--espace-md);
+  padding-right: var(--espace-md);
+}
+
+.confirmation {
+  max-width: 26rem;
+  margin: 0 auto;
+  text-align: center;
+}

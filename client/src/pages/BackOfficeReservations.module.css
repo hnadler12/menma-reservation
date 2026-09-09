@@ -1,0 +1,89 @@
+.barreDate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espace-sm);
+  max-width: 26rem;
+  margin: 0 auto var(--espace-lg);
+}
+
+.barreDate input {
+  flex: 1;
+}
+
+.boutonJour {
+  background: none;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: 0.65rem 0.9rem;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.bandeauFerme {
+  max-width: 30rem;
+  margin: 0 auto var(--espace-lg);
+  text-align: center;
+  color: var(--erreur);
+  border: 1px solid var(--erreur);
+  border-radius: var(--rayon);
+  padding: var(--espace-sm);
+}
+
+.service {
+  max-width: 34rem;
+  margin: 0 auto var(--espace-lg);
+}
+
+.serviceEntete {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--bordure-accent);
+  padding-bottom: var(--espace-xs);
+  margin-bottom: var(--espace-sm);
+}
+
+.serviceTitre {
+  font-family: var(--police-titre);
+  font-size: 1.2rem;
+}
+
+.serviceTotal {
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.ligneReservation {
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-sm);
+  margin-bottom: var(--espace-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.ligneAnnulee {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+.ligneHaut {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espace-sm);
+  flex-wrap: wrap;
+  font-weight: 500;
+}
+
+.ligneDetails {
+  color: var(--texte-secondaire);
+  font-size: 0.9rem;
+}
+
+.vide {
+  color: var(--texte-secondaire);
+  font-size: 0.9rem;
+}

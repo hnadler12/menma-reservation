@@ -1,0 +1,26 @@
+.page {
+  padding-left: var(--espace-md);
+  padding-right: var(--espace-md);
+}
+
+.grille {
+  display: grid;
+  gap: var(--espace-lg);
+}
+
+@media (min-width: 768px) {
+  .grille {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.bloc {
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-md);
+}
+
+.blocTitre {
+  font-family: var(--police-titre);
+  margin-bottom: var(--espace-sm);
+}

@@ -1,0 +1,45 @@
+.hero {
+  padding: var(--espace-xl) 0;
+  text-align: center;
+  background: var(--fond-secondaire);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-sm);
+  align-items: center;
+  margin-top: var(--espace-lg);
+}
+
+@media (min-width: 480px) {
+  .actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.infos {
+  display: grid;
+  gap: var(--espace-lg);
+  padding: var(--espace-xl) 0;
+}
+
+@media (min-width: 768px) {
+  .infos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.carte {
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-md);
+  text-align: center;
+}
+
+.carteTitre {
+  font-family: var(--police-titre);
+  font-weight: 600;
+  margin-bottom: var(--espace-xs);
+}

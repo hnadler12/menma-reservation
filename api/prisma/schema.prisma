@@ -1,0 +1,141 @@
+// Chaque modèle renvoie aux règles de gestion (RG-xx) du document de spécification.
+// Nommage en français, sans accents ni cédilles : les identifiants doivent rester
+// en ASCII pour éviter tout problème d'encodage entre l'ORM et la base.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+}
+
+enum Role {
+  CLIENT
+  RESTAURATEUR // RG-18 : deux roles seulement
+}
+
+model Utilisateur {
+  id             String   @id @default(uuid())
+  email          String   @unique // RG-21 : identifiant unique
+  motDePasseHash String
+  prenom         String
+  nom            String
+  telephone      String?
+  role           Role     @default(CLIENT)
+  creeLe         DateTime @default(now())
+  modifieLe      DateTime @updatedAt
+
+  reservations Reservation[]
+
+  @@map("utilisateurs")
+}
+
+enum TypeUnite {
+  TABLE
+  COMPTOIR
+}
+
+/// Une unite d'assise : une table, ou le comptoir a sushis.
+/// Le champ `divisible` porte toute la difference de comportement (RG-01, RG-02).
+model Unite {
+  id        String    @id @default(uuid())
+  libelle   String // "Table 3", "Comptoir"
+  type      TypeUnite
+  capacite  Int // nombre de couverts
+  divisible Boolean   @default(false) // false = table, true = comptoir
+  tailleMin Int       @default(1) // RG-04 : taille de groupe minimale acceptee
+  tailleMax Int? // RG-04 : plafond specifique au comptoir
+  actif     Boolean   @default(true) // desactivation sans suppression
+  creeLe    DateTime  @default(now())
+
+  reservations Reservation[]
+
+  @@map("unites")
+}
+
+enum Periode {
+  MIDI
+  SOIR
+}
+
+/// Un creneau recurrent, independant de la date. RG-05.
+/// Modifiable depuis le back office (US-15).
+model Creneau {
+  id         String   @id @default(uuid())
+  periode    Periode
+  heureDebut String // "12:00", "19:00" — heure locale, pas d'ambiguite de fuseau
+  position   Int // ordre d'affichage dans la periode
+  actif      Boolean  @default(true)
+  creeLe     DateTime @default(now())
+
+  services Service[]
+
+  @@unique([periode, heureDebut])
+  @@map("creneaux")
+}
+
+/// L'occurrence d'un creneau a une date donnee.
+/// Creee a la demande, lors de la premiere reservation.
+///
+/// Cette entite est le point de serialisation des reservations concurrentes :
+/// la ligne est verrouillee en ecriture le temps de verifier la disponibilite
+/// puis d'inserer la reservation (RG-11).
+model Service {
+  id        String   @id @default(uuid())
+  date      DateTime @db.Date // date seule, sans heure
+  creneauId String
+  creeLe    DateTime @default(now())
+
+  creneau      Creneau       @relation(fields: [creneauId], references: [id])
+  reservations Reservation[]
+
+  @@unique([date, creneauId]) // un seul service par date et par creneau
+  @@index([date])
+  @@map("services")
+}
+
+/// Fermeture exceptionnelle : conges, privatisation, jour ferie. RG-08.
+/// L'etablissement etant ouvert 7j/7 (RG-07), c'est le seul mecanisme
+/// de blocage de dates.
+model Fermeture {
+  id        String   @id @default(uuid())
+  dateDebut DateTime @db.Date
+  dateFin   DateTime @db.Date
+  motif     String?
+  creeLe    DateTime @default(now())
+
+  @@index([dateDebut, dateFin])
+  @@map("fermetures")
+}
+
+enum StatutReservation {
+  CONFIRMEE // RG-09 : validee automatiquement
+  ANNULEE
+  HONOREE // RG-13 : bascule automatique apres le service
+  ABSENTE // RG-12 : no-show marque par le restaurateur
+}
+
+model Reservation {
+  id              String            @id @default(uuid())
+  reference       String            @unique // reference courte communiquee au client
+  utilisateurId   String
+  serviceId       String
+  uniteId         String
+  nombreConvives  Int
+  statut          StatutReservation @default(CONFIRMEE)
+  note            String? // allergie, occasion (US-18)
+  creeLe          DateTime          @default(now())
+  modifieLe       DateTime          @updatedAt
+  annuleLe        DateTime?
+
+  utilisateur Utilisateur @relation(fields: [utilisateurId], references: [id])
+  service     Service     @relation(fields: [serviceId], references: [id])
+  unite       Unite       @relation(fields: [uniteId], references: [id])
+
+  @@index([serviceId, statut]) // vue back office par service (US-09)
+  @@index([utilisateurId, statut]) // espace client (US-06)
+  @@index([uniteId, serviceId]) // calcul de disponibilite
+  @@map("reservations")
+}

@@ -1,0 +1,22 @@
+:root {
+  --fond: #FFFFFF;
+  --fond-secondaire: #E6E1CF;
+  --texte: #000000;
+  --texte-secondaire: #2D2E2B;
+  --accent: #6F534B;
+  --bordure: #CFC7B0;
+  --bordure-accent: #420101;
+  --erreur: #A32E22;
+  --succes: #3E6B3E;
+  --police-titre: 'Tenor Sans', sans-serif;
+  --police-texte: 'Zen Kurenaido', sans-serif;
+
+  --espace-xs: 0.5rem;
+  --espace-sm: 1rem;
+  --espace-md: 1.5rem;
+  --espace-lg: 2.5rem;
+  --espace-xl: 4rem;
+
+  --rayon: 4px;
+  --largeur-max: 1140px;
+}

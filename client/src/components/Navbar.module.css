@@ -1,0 +1,77 @@
+.navbar {
+  border-bottom: 1px solid var(--bordure);
+  background: var(--fond);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.interieur {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--espace-sm);
+  padding-bottom: var(--espace-sm);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  height: 2.5rem;
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.milieu {
+  height: 2.5rem;
+  width: auto;
+  border-radius: var(--rayon);
+  object-fit: cover;
+}
+
+.boutonMenu {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: var(--espace-xs);
+}
+
+.liens {
+  display: none;
+  flex-direction: column;
+  gap: var(--espace-sm);
+  padding-bottom: var(--espace-md);
+}
+
+.liens.ouvert {
+  display: flex;
+}
+
+.liens a {
+  display: block;
+  padding: var(--espace-xs) 0;
+}
+
+.lienActif {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .boutonMenu {
+    display: none;
+  }
+
+  .liens {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--espace-md);
+    padding-bottom: 0;
+  }
+}
