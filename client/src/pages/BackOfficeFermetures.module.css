@@ -13,8 +13,13 @@
 
 .champsDates {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--espace-sm);
+}
+
+.champsDates input {
+  min-width: 0;
+  width: 100%;
 }
 
 .impact {
