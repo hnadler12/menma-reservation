@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import { ErreurApi } from '../services/api'
+import styles from './Inscription.module.css'
 
 const FORM_INITIAL = { email: '', motDePasse: '', prenom: '', nom: '', telephone: '' }
 
@@ -40,7 +41,7 @@ function Inscription() {
   }
 
   return (
-    <div className="container section">
+    <div className={`container section ${styles.page}`}>
       <h1 className="section-title">Créer un compte</h1>
       <p className="section-subtitle">
         Un compte permet de suivre, modifier et annuler vos réservations en ligne.

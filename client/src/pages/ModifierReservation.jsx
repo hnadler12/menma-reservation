@@ -5,6 +5,7 @@ import RecapitulatifReservation from '../components/RecapitulatifReservation'
 import { listerMesReservations, modifierReservation } from '../services/reservations.service'
 import { ErreurApi } from '../services/api'
 import { libelleUnite } from '../utils/unite'
+import styles from './ModifierReservation.module.css'
 
 function ModifierReservation() {
   const { id } = useParams()
@@ -61,7 +62,7 @@ function ModifierReservation() {
 
   if (chargement) {
     return (
-      <div className="container section">
+      <div className={`container section ${styles.page}`}>
         <p>Chargement…</p>
       </div>
     )
@@ -69,7 +70,7 @@ function ModifierReservation() {
 
   if (erreurChargement) {
     return (
-      <div className="container section">
+      <div className={`container section ${styles.page}`}>
         <p className="message-erreur">{erreurChargement}</p>
       </div>
     )
@@ -77,7 +78,7 @@ function ModifierReservation() {
 
   if (reservationModifiee) {
     return (
-      <div className="container section" style={{ textAlign: 'center' }}>
+      <div className={`container section ${styles.page}`} style={{ textAlign: 'center' }}>
         <h1>Réservation modifiée</h1>
         <p className="message-succes">
           {libelleUnite(reservationModifiee.unite)} — votre réservation a bien été mise à jour.
@@ -90,7 +91,7 @@ function ModifierReservation() {
   }
 
   return (
-    <div className="container section">
+    <div className={`container section ${styles.page}`}>
       <h1 className="section-title">Modifier ma réservation</h1>
       <p className="section-subtitle">
         Le créneau d'origine reste inchangé tant que la modification n'est pas confirmée (RG-17) : en

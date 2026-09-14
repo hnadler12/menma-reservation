@@ -153,7 +153,7 @@ function BackOfficeFermetures() {
   }
 
   return (
-    <div className="container section">
+    <div className={`container section ${styles.page}`}>
       <h1 className="section-title">Fermetures exceptionnelles</h1>
       <p className="section-subtitle">
         Congés, privatisation, jour férié — toutes les réservations sont bloquées sur la période.

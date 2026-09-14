@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import { ErreurApi } from '../services/api'
+import styles from './Connexion.module.css'
 
 function Connexion() {
   const { seConnecter } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const destination = location.state?.depuis ?? '/espace-client'
 
   const [form, setForm] = useState({ email: '', motDePasse: '' })
   const [erreur, setErreur] = useState(null)
@@ -22,7 +22,9 @@ function Connexion() {
     setErreur(null)
     setEnCours(true)
     try {
-      await seConnecter(form)
+      const utilisateurConnecte = await seConnecter(form)
+      const destination =
+        location.state?.depuis ?? (utilisateurConnecte.role === 'RESTAURATEUR' ? '/back-office' : '/espace-client')
       navigate(destination, { replace: true })
     } catch (e) {
       setErreur(e instanceof ErreurApi ? e.message : 'Connexion impossible.')
@@ -32,7 +34,7 @@ function Connexion() {
   }
 
   return (
-    <div className="container section">
+    <div className={`container section ${styles.page}`}>
       <h1 className="section-title">Connexion</h1>
 
       <form className="formulaire" onSubmit={handleSubmit} noValidate>

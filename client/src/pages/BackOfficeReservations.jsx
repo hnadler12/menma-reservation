@@ -55,7 +55,7 @@ function BackOfficeReservations() {
   }
 
   return (
-    <div className="container section">
+    <div className={`container section ${styles.page}`}>
       <h1 className="section-title">Réservations du jour</h1>
 
       <div className={styles.barreDate}>
