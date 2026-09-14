@@ -49,6 +49,9 @@ function Navbar() {
               <NavLink to="/reservation" className={lienClasse} onClick={fermerMenu}>
                 Réserver
               </NavLink>
+              <NavLink to="/espace-client" className={lienClasse} onClick={fermerMenu}>
+                Mon espace
+              </NavLink>
               <button type="button" className="btn-texte" onClick={seDeconnecter}>
                 Déconnexion
               </button>
